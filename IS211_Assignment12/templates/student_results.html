@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Results for {{ student.first_name }} {{ student.last_name }} (ID {{ student.id }})</h2>
+{% if not rows %}
+  <p>No Results</p>
+{% else %}
+<table>
+  <thead><tr><th>Quiz ID</th><th>Subject</th><th>Date</th><th>Score</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.quiz_id }}</td>
+        <td>{{ r.subject }}</td>
+        <td>{{ r.quiz_date }}</td>
+        <td>{{ r.score }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

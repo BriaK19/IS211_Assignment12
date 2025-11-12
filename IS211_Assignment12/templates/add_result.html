@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Quiz Result</h2>
+<form method="post">
+  <label>Student
+    <select name="student_id" required>
+      <option value="">-- choose --</option>
+      {% for s in students %}<option value="{{ s.id }}">{{ s.name }}</option>{% endfor %}
+    </select>
+  </label><br>
+  <label>Quiz
+    <select name="quiz_id" required>
+      <option value="">-- choose --</option>
+      {% for q in quizzes %}<option value="{{ q.id }}">{{ q.label }}</option>{% endfor %}
+    </select>
+  </label><br>
+  <label>Score <input name="score" type="number" min="0" max="100" required></label><br><br>
+  <button type="submit">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>IS211 Assignment 13</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:2rem;}
+    table{border-collapse:collapse;width:100%;margin:1rem 0;}
+    th,td{border:1px solid #ddd;padding:.5rem;text-align:left;}
+    th{background:#f6f6f6}
+    .nav a{margin-right:1rem}
+    .flash{padding:.5rem .75rem;margin:.5rem 0;border-radius:6px;background:#fff3cd;border:1px solid #ffeeba}
+    .error{background:#f8d7da;border-color:#f5c6cb}
+  </style>
+</head>
+<body>
+  <div class="nav">
+    {% if session.user %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('add_student') }}">Add Student</a>
+      <a href="{{ url_for('add_quiz') }}">Add Quiz</a>
+      <a href="{{ url_for('add_result') }}">Add Quiz Result</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for cat,msg in messages %}<div class="flash {{cat}}">{{ msg }}</div>{% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</body>
+</html>
